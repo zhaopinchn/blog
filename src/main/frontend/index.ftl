@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>implements-me | {{ title }}</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/src/main/frontend/assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/vue/dist/vue.js" type="application/javascript"></script>
 </head>
 <body>

@@ -2,11 +2,7 @@
 node_modules/
 dist/
 npm-debug.log
-test/unit/coverage
-
 .idea
 .mvn
-target/
-*.log
 *.iml
-
+target/
