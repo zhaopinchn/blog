@@ -4,8 +4,8 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../src/main/frontend/index.ftl'),
-    assetsRoot: path.resolve(__dirname, '../src/main/frontend/assets'),
+    index: path.resolve(__dirname, '../src/main/resources/templates/index.ftl'),
+    assetsRoot: path.resolve(__dirname, '../src/main/resources'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,

@@ -1,13 +1,20 @@
 <template>
-  <div id="app">
+  <div>
+    <page-header></page-header>
+    <hello></hello>
     <img src="assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
+  import PageHeader from './components/common/PageHeader.vue'
+  import Hello from './components/Hello.vue'
+  export default {
+    name: 'app',
+    components: {
+      Hello, PageHeader
+    }
 }
 </script>
 
