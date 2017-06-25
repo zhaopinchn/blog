@@ -6,3 +6,5 @@ npm-debug.log
 .mvn
 *.iml
 target/
+/logs/*
+**/app.js

@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
-    <Properties>
-        <Property name="log-path">/data/logs</Property>
-    </Properties>
-    <Appenders>
-        <Console name="console-log" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
-        </Console>
-        <RollingFile name="info-log" fileName="${log-path}/weixin-info-${hostName}.log"
-                     filePattern="${log-path}/$${date:yyyy-MM-dd}/weixin-info-${hostName}-%d{yyyy-MM-dd}.%i.log">
-            <PatternLayout>
-                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
-            </PatternLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="100MB"/>
-            </Policies>
-        </RollingFile>
-        <RollingFile name="error-log" fileName="${log-path}/weixin-error-${hostName}.log"
-                     filePattern="${log-path}/$${date:yyyy-MM-dd/weixin-error-${hostName}-%d{yyyy-MM-dd}.%i.log">
-            <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1} - %msg%n</pattern>
-            </PatternLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="100MB"/>
-            </Policies>
-        </RollingFile>
-    </Appenders>
-    <Loggers>
-        <Logger name="org.mybatis" level="warn" />
-        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
-        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
-        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
-        <Logger name="org.springframework.web" level="info" />
-
-        <Logger name="com.coderpark.services" level="info" additivity="false">
-            <appender-ref ref="info-log" level="info"/>
-            <appender-ref ref="error-log" level="error"/>
-            <appender-ref ref="console-log" level="debug"/>
-        </Logger>
-        <Root level="info" additivity="false">
-            <AppenderRef ref="console-log"/>
-        </Root>
-    </Loggers>
-</Configuration>
+<configuration status="WARN" monitorInterval="30">
+  <properties>
+    <property name="PATTERN_LOG">%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,ERROR=red,
+      WARN=blue, INFO=black, DEBUG=green, TRACE=blue}</property>
+  </properties>
+  <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+      <PatternLayout pattern="${PATTERN_LOG}"/>
+    </Console>
+    <!--<File name="File" fileName="logs/processor.log" append="true">-->
+    <!--<PatternLayout pattern="${PATTERN_LOG}"/>-->
+    <!--</File>-->
+    <RollingFile name="RollingFile" fileName="logs/blog.log"
+                 filePattern="logs/blog-%d{yyyyMMdd}-%i.log.gz">
+      <PatternLayout pattern="${PATTERN_LOG}"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+      </Policies>
+    </RollingFile>
+  </appenders>
+  <loggers>
+    <Logger name="org.apache" level="error" />
+    <Logger name="org.hibernate" level="warn" />
+    <Logger name="org.springframework" level="info" />
+    <Logger name="org.activiti" level="error" />
+    <Logger name="com.alibaba" level="warn"/>
+    <root level="WARN">
+      <appender-ref ref="RollingFile"/>
+      <appender-ref ref="Console"/>
+      <!--<appender-ref ref="File"/>-->
+    </root>
+  </loggers>
+</configuration>
