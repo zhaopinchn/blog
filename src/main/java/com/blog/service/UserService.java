@@ -1,9 +1,9 @@
-package com.coderpark.service;
+package com.blog.service;
 
-import com.coderpark.dao.UserMapper;
-import com.coderpark.domain.SUser;
-import com.coderpark.entity.Role;
-import com.coderpark.entity.User;
+import com.blog.dao.UserMapper;
+import com.blog.domain.SUser;
+import com.blog.entity.Role;
+import com.blog.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

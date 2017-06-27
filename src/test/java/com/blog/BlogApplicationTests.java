@@ -1,4 +1,4 @@
-package com.coderpark;
+package com.blog;
 
 //import org.junit.runner.RunWith;
 //import org.springframework.boot.test.context.SpringBootTest;

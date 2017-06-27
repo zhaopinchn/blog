@@ -1,7 +1,7 @@
-package com.coderpark.domain;
+package com.blog.domain;
 
-import com.coderpark.entity.Role;
-import com.coderpark.entity.User;
+import com.blog.entity.Role;
+import com.blog.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

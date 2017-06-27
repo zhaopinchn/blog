@@ -1,4 +1,4 @@
-package com.coderpark.entity;
+package com.blog.entity;
 
 import java.io.Serializable;
 

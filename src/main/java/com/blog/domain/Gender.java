@@ -1,4 +1,4 @@
-package com.coderpark.domain;
+package com.blog.domain;
 
 /**
  * Created by zhaopin on 2016/11/13.

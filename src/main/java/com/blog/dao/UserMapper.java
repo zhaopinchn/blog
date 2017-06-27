@@ -1,7 +1,7 @@
-package com.coderpark.dao;
+package com.blog.dao;
 
-import com.coderpark.entity.Role;
-import com.coderpark.entity.User;
+import com.blog.entity.Role;
+import com.blog.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

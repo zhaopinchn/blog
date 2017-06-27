@@ -1,4 +1,4 @@
-package com.coderpark.entity;
+package com.blog.entity;
 
 /**
  * Created by zhaopin on 2016/11/13.
