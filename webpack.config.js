@@ -1,4 +1,6 @@
 var path = require('path')
+var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './src/main/resources/public/js/app'),
-    filename: 'app.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -40,7 +42,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        // loader: 'style-loader!css-loader'
+        use: ExtractTextPlugin.extract({
+          use: 'css-loader'
+        })
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -54,5 +59,19 @@ module.exports = {
         loader: 'url-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    }),
+    new ExtractTextPlugin('styles.css')
+  ]
 }

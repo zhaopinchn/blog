@@ -8,3 +8,5 @@ npm-debug.log
 target/
 /logs/*
 **/app.js
+**/vendor.js
+**/styles.css
