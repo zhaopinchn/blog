@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN" monitorInterval="30">
+<configuration status="DEBUG" monitorInterval="30">
   <properties>
     <property name="PATTERN_LOG">%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,ERROR=red,
       WARN=blue, INFO=black, DEBUG=green, TRACE=blue}</property>
@@ -9,12 +9,18 @@
       <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout pattern="${PATTERN_LOG}"/>
     </Console>
-    <!--<File name="File" fileName="logs/processor.log" append="true">-->
-    <!--<PatternLayout pattern="${PATTERN_LOG}"/>-->
-    <!--</File>-->
+    <RollingFile name="RollingFileError" fileName="logs/blog-err.log"
+                 filePattern="logs/blog-err-%d{yyyyMMdd}-%i.log.gz">
+      <PatternLayout pattern="${PATTERN_LOG}"/>
+      <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+      </Policies>
+    </RollingFile>
     <RollingFile name="RollingFile" fileName="logs/blog.log"
                  filePattern="logs/blog-%d{yyyyMMdd}-%i.log.gz">
       <PatternLayout pattern="${PATTERN_LOG}"/>
+      <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
       <Policies>
         <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
       </Policies>
@@ -27,9 +33,9 @@
     <Logger name="org.activiti" level="error" />
     <Logger name="com.alibaba" level="warn"/>
     <root level="WARN">
+      <appender-ref ref="RollingFileError"/>
       <appender-ref ref="RollingFile"/>
       <appender-ref ref="Console"/>
-      <!--<appender-ref ref="File"/>-->
     </root>
   </loggers>
 </configuration>
